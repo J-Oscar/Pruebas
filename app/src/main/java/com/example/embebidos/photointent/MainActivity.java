@@ -1,9 +1,13 @@
 package com.example.embebidos.photointent;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
         cameraButton = (Button) findViewById(R.id.camera);
         image = (ImageView) findViewById(R.id.imageV);
+
     }
+
 
     protected void camera(View view){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -49,11 +55,9 @@ public class MainActivity extends AppCompatActivity {
     protected Uri createAppFile() throws IOException {
         String photoName = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "VIEWDIT_" + photoName + ".JPG";
+        String folder = Environment.getDataDirectory() + File.separator + "Pictures" + File.separator + "ViewDit";
 
-        String folder = Environment.DIRECTORY_PICTURES + File.separator + "ViewDit";
-
-        File finalPhoto = new File(Environment.getExternalStoragePublicDirectory(folder), imageFileName);
-        //File photoT = File.createTempFile(imageFileName, ".jpg");
+        File finalPhoto = new File(folder, imageFileName);
         Uri photoUri = Uri.fromFile(finalPhoto);
         return photoUri;
     }
