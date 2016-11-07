@@ -58,11 +58,14 @@ public class MainActivity extends AppCompatActivity {
 //        String solo = Environment.getDataDirectory() + File.separator + "Pictures" + File.separator + "ViewDit";
   //      Toast errorM = new Toast(this);
     //    errorM.makeText(this, solo, Toast.LENGTH_LONG).show();
-        String folder = Environment.DIRECTORY_PICTURES + File.separator + "ViewDit";
+        //String folder = Environment.DIRECTORY_DCIM + File.separator  + "ViewDit";
 
-        File finalPhoto = new File(Environment.getExternalStoragePublicDirectory(folder), imageFileName);
+        //File finalPhoto = new File(Environment.getExternalStoragePublicDirectory(folder), imageFileName);
+        File finalPhoto2 = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), imageFileName);
         //File photoT = File.createTempFile(imageFileName, ".jpg");
-        Uri photoUri = Uri.fromFile(finalPhoto);
+        Uri photoUri = Uri.fromFile(finalPhoto2);
+       //Toast errorM = new Toast(this);
+         //  errorM.makeText(this, getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString(), Toast.LENGTH_LONG).show();
         return photoUri;
     }
 }
