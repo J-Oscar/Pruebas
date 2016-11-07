@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    protected void camera(View view){
+    public void camera(View view){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             try {
@@ -52,12 +52,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    protected Uri createAppFile() throws IOException {
+    public Uri createAppFile() throws IOException {
         String photoName = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "VIEWDIT_" + photoName + ".JPG";
-        String folder = Environment.getDataDirectory() + File.separator + "Pictures" + File.separator + "ViewDit";
+//        String solo = Environment.getDataDirectory() + File.separator + "Pictures" + File.separator + "ViewDit";
+  //      Toast errorM = new Toast(this);
+    //    errorM.makeText(this, solo, Toast.LENGTH_LONG).show();
+        String folder = Environment.DIRECTORY_PICTURES + File.separator + "ViewDit";
 
-        File finalPhoto = new File(folder, imageFileName);
+        File finalPhoto = new File(Environment.getExternalStoragePublicDirectory(folder), imageFileName);
+        //File photoT = File.createTempFile(imageFileName, ".jpg");
         Uri photoUri = Uri.fromFile(finalPhoto);
         return photoUri;
     }
